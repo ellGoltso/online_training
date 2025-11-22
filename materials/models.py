@@ -1,5 +1,6 @@
 from django.db import models
 
+
 class Course(models.Model):
     name = models.CharField(max_length=150, verbose_name="Название курса")
     image = models.ImageField(
@@ -11,8 +12,11 @@ class Course(models.Model):
     description = models.TextField(verbose_name="Описание курса")
 
     class Meta:
-        verbose_name = 'курс'
-        verbose_name_plural = 'курсы'
+        verbose_name = "курс"
+        verbose_name_plural = "курсы"
+
+    def __str__(self):
+        return self.name
 
 
 class Lesson(models.Model):
@@ -30,5 +34,8 @@ class Lesson(models.Model):
     link_video = models.CharField(max_length=255, blank=True, null=True)
 
     class Meta:
-        verbose_name = 'урок'
-        verbose_name_plural = 'уроки'
+        verbose_name = "урок"
+        verbose_name_plural = "уроки"
+
+    def __str__(self):
+        return self.name
