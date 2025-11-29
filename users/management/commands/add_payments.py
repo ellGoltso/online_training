@@ -6,26 +6,30 @@ from materials.models import Course, Lesson
 class Command(BaseCommand):
 
     def handle(self, *args, **options):
-        User.objects.all().delete()
         Course.objects.all().delete()
 
-        user, _ = User.objects.get_or_create(email="test@user.ru")
+        user, _ = User.objects.get_or_create(
+            username="test_user_1", email="test@user.ru"
+        )
+        user.set_password("1234qwer")
+        user.save()
 
         course, _ = Course.objects.get_or_create(
             name="Курс математики",
             description="сложение, вычитание, деление, умножение",
+            owner=user,
         )
         lesson_1, _ = Lesson.objects.get_or_create(
-            name="сложение", description="урок сложения", course=course
+            name="сложение", description="урок сложения", course=course, owner=user
         )
         lesson_2, _ = Lesson.objects.get_or_create(
-            name="вычитание", description="урок вычитания", course=course
+            name="вычитание", description="урок вычитания", course=course, owner=user
         )
         lesson_3, _ = Lesson.objects.get_or_create(
-            name="деление", description="урок деления", course=course
+            name="деление", description="урок деления", course=course, owner=user
         )
         lesson_4, _ = Lesson.objects.get_or_create(
-            name="умножение", description="урок умножения", course=course
+            name="умножение", description="урок умножения", course=course, owner=user
         )
 
         payments = [

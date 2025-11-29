@@ -5,13 +5,18 @@ from materials.models import Lesson, Course
 
 
 class User(AbstractUser):
+    username = models.CharField(unique=True)
     email = models.EmailField(unique=True)
     phone_number = models.CharField(max_length=15, blank=True, null=True)
     city = models.CharField(max_length=50, blank=True, null=True)
     avatar = models.ImageField(upload_to="avatars/", blank=True, null=True)
 
     USERNAME_FIELD = "email"
-    REQUIRED_FIELDS = []
+    REQUIRED_FIELDS = ["username"]
+
+    class Meta:
+        verbose_name = "пользователь"
+        verbose_name_plural = "пользователи"
 
     def __str__(self):
         return self.email
