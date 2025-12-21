@@ -20,7 +20,7 @@ def create_stripe_price(amount):
 def create_stripe_session(price):
     """Создание сессии оплаты"""
     session = stripe.checkout.Session.create(
-        success_url="http://127.0.0.1:8000/",
+        success_url="http://127.0.0.1:8000/materials/",
         line_items=[{"price": price.get("id"), "quantity": 1}],
         mode="payment",
     )

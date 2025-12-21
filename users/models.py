@@ -5,6 +5,8 @@ from materials.models import Lesson, Course
 
 
 class User(AbstractUser):
+    """Модель пользователя"""
+
     username = models.CharField(unique=True)
     email = models.EmailField(unique=True)
     phone_number = models.CharField(max_length=15, blank=True, null=True)
@@ -23,6 +25,8 @@ class User(AbstractUser):
 
 
 class Payment(models.Model):
+    """Модель платежа"""
+
     CASH = "Наличные"
     NON_CASH = "Безналичные"
 
@@ -67,6 +71,8 @@ class Payment(models.Model):
 
 
 class Subscription(models.Model):
+    """Модель подписки на курс"""
+
     user_subscription = models.ForeignKey(
         User, on_delete=models.CASCADE, verbose_name="пользователь"
     )
