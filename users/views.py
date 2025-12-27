@@ -10,10 +10,21 @@ from users.serializers import PaymentSerializer, UserSerializer, SubscriptionSer
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.filters import OrderingFilter, SearchFilter
 
+from users.services import create_stripe_price, create_stripe_session
+
 
 class PaymentCreateAPIView(generics.CreateAPIView):
     serializer_class = PaymentSerializer
     permission_classes = [IsAuthenticated]
+    queryset = Payment.objects.all()
+
+    def perform_create(self, serializer):
+        payment = serializer.save(user=self.request.user)
+
+        price = create_stripe_price(int(payment.payment_sum))
+
+        payment.session_id, payment.link = create_stripe_session(price)
+        payment.save()
 
 
 class PaymentListAPIView(generics.ListAPIView):
