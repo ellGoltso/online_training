@@ -41,7 +41,7 @@ class CourseViewSet(viewsets.ModelViewSet):
             subs = Subscription.objects.filter(course_subscription=course.id)
             users_ids = [sub.user_subscription.id for sub in subs]
             if users_ids:
-                send_email_about_update_materials(users_ids)
+                send_email_about_update_materials.delay(users_ids)
             return Response({"message": "Курс успешно обновлен"})
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
