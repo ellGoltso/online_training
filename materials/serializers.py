@@ -24,7 +24,8 @@ class CourseSerializer(serializers.ModelSerializer):
         model = Course
         fields = "__all__"
 
-    def get_count_lessons(self, obj):
+    @staticmethod
+    def get_count_lessons(obj):
         return Lesson.objects.filter(course=obj).count()
 
     def get_is_subscribed(self, obj):
