@@ -36,7 +36,12 @@ class Payment(models.Model):
     ]
 
     user = models.ForeignKey(
-        User, on_delete=models.CASCADE, related_name="user", verbose_name="пользователь", blank=True, null=True
+        User,
+        on_delete=models.CASCADE,
+        related_name="user",
+        verbose_name="пользователь",
+        blank=True,
+        null=True,
     )
     payment_date = models.DateField(verbose_name="дата платежа", auto_now_add=True)
     paid_course = models.ForeignKey(
@@ -50,16 +55,10 @@ class Payment(models.Model):
         choices=METHODS_PAYMENTS, verbose_name="способ оплаты", default=CASH
     )
     session_id = models.CharField(
-        max_length=255,
-        blank=True,
-        null=True,
-        verbose_name="Id сессии"
+        max_length=255, blank=True, null=True, verbose_name="Id сессии"
     )
     link = models.URLField(
-        max_length=1000,
-        blank=True,
-        null=True,
-        verbose_name="Ссылка на оплату"
+        max_length=1000, blank=True, null=True, verbose_name="Ссылка на оплату"
     )
 
     def __str__(self):

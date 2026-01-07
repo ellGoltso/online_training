@@ -9,6 +9,7 @@ https://docs.djangoproject.com/en/5.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.2/ref/settings/
 """
+
 from datetime import timedelta
 from pathlib import Path
 import os
@@ -41,13 +42,11 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "rest_framework",
-
     "users",
     "materials",
-
     "django_filters",
-    'drf_yasg',
-    'django_celery_beat',
+    "drf_yasg",
+    "django_celery_beat",
 ]
 
 REST_FRAMEWORK = {
@@ -150,9 +149,9 @@ AUTH_USER_MODEL = "users.User"
 STRIPE_API_KEY = os.getenv("STRIPE_API_KEY")
 
 CACHES = {
-    'default': {
-        'BACKEND': os.getenv("BACKEND"),
-        'LOCATION': os.getenv("LOCATION"),
+    "default": {
+        "BACKEND": os.getenv("BACKEND"),
+        "LOCATION": os.getenv("LOCATION"),
     }
 }
 
@@ -182,8 +181,8 @@ SERVER_EMAIL = EMAIL_HOST_USER
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
 CELERY_BEAT_SCHEDULE = {
-    'task-name': {
-        'task': 'materials.tasks.block',
-        'schedule': timedelta(minutes=5),
+    "task-name": {
+        "task": "materials.tasks.block",
+        "schedule": timedelta(minutes=5),
     },
 }
