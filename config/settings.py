@@ -150,7 +150,7 @@ STRIPE_API_KEY = os.getenv("STRIPE_API_KEY")
 
 CACHES = {
     "default": {
-        "BACKEND": os.getenv("BACKEND"),
+        "BACKEND": os.getenv("BACKEND", 'django.core.cache.backends.locmem.LocMemCache'),
         "LOCATION": os.getenv("LOCATION"),
     }
 }
