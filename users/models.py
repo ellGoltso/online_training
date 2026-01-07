@@ -52,7 +52,7 @@ class Payment(models.Model):
     )
     payment_sum = models.PositiveIntegerField(verbose_name="сумма платежа")
     payment_method = models.CharField(
-        max_length=55 ,choices=METHODS_PAYMENTS, verbose_name="способ оплаты", default=CASH
+        max_length=55, choices=METHODS_PAYMENTS, verbose_name="способ оплаты", default=CASH
     )
     session_id = models.CharField(
         max_length=255, blank=True, null=True, verbose_name="Id сессии"
