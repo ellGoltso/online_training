@@ -92,5 +92,5 @@ jobs:
           passphrase: ${{ secrets.SSH_PASSPHRASE }}
           script: |
             cd ~/online_training
-            git pull origin main
+            git pull origin features/1.7
             docker compose up -d --build
