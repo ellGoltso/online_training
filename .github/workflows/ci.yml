@@ -52,7 +52,7 @@ jobs:
       POSTGRES_DB: ${{ secrets.DB_NAME }}
       POSTGRES_USER: ${{ secrets.DB_USER }}
       POSTGRES_PASSWORD: ${{ secrets.DB_PASSWORD }}
-      POSTGRES_HOST: localhost
+      POSTGRES_HOST: postgres
       POSTGRES_PORT: 5432
       SECRET_KEY: ${{ secrets.SECRET_KEY }}
     steps:
