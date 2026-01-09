@@ -1,0 +1,14 @@
+[flake8]
+exclude =
+    */migrations/*,
+    .git,
+    __pycache__,
+    *.pyc,
+    */site-packages/*,
+    venv,
+    .venv,
+    env,
+    .env,
+
+ignore = E501,W292,F401,E302,F541
+max-line-length = 119

@@ -7,7 +7,7 @@ from materials.models import Lesson, Course
 class User(AbstractUser):
     """Модель пользователя"""
 
-    username = models.CharField(unique=True)
+    username = models.CharField(max_length=55, unique=True)
     email = models.EmailField(unique=True)
     phone_number = models.CharField(max_length=15, blank=True, null=True)
     city = models.CharField(max_length=50, blank=True, null=True)
@@ -36,7 +36,12 @@ class Payment(models.Model):
     ]
 
     user = models.ForeignKey(
-        User, on_delete=models.CASCADE, related_name="user", verbose_name="пользователь", blank=True, null=True
+        User,
+        on_delete=models.CASCADE,
+        related_name="user",
+        verbose_name="пользователь",
+        blank=True,
+        null=True,
     )
     payment_date = models.DateField(verbose_name="дата платежа", auto_now_add=True)
     paid_course = models.ForeignKey(
@@ -47,19 +52,13 @@ class Payment(models.Model):
     )
     payment_sum = models.PositiveIntegerField(verbose_name="сумма платежа")
     payment_method = models.CharField(
-        choices=METHODS_PAYMENTS, verbose_name="способ оплаты", default=CASH
+        max_length=55, choices=METHODS_PAYMENTS, verbose_name="способ оплаты", default=CASH
     )
     session_id = models.CharField(
-        max_length=255,
-        blank=True,
-        null=True,
-        verbose_name="Id сессии"
+        max_length=255, blank=True, null=True, verbose_name="Id сессии"
     )
     link = models.URLField(
-        max_length=1000,
-        blank=True,
-        null=True,
-        verbose_name="Ссылка на оплату"
+        max_length=1000, blank=True, null=True, verbose_name="Ссылка на оплату"
     )
 
     def __str__(self):
